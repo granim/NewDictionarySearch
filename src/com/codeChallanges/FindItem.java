@@ -92,7 +92,7 @@ public class FindItem {
            /* if (otherItem != null) {
                 continue;
             }*/
-           
+
             item.setCreatedDate(new Date());
             item.setUpdatedDate(new Date());
 
