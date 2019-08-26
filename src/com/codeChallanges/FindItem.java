@@ -16,7 +16,7 @@ Pop quiz hot shot.
 
 //Let's assume there are 1,000,000+ item in this list items
 //-------------------Example Code Given via Coder Campus---------------------------
-public class FindItem {
+/*public class FindItem {
     public void findItems() {
         for (List<Item> item : items) {
             if (item.getPropert1().equals("Some_CONSTANT")) {
@@ -89,9 +89,9 @@ public class FindItem {
             //-----We already have otherItem found by ID why check null twice or retrieve from the DB a 2nd time?
            // otherItem = someOtherItemRepository.findByProperty1AndPropert2(item.getPropert1(),item.getProperty2);
 
-           /* if (otherItem != null) {
+           *//* if (otherItem != null) {
                 continue;
-            }*/
+            }*//*
 
             item.setCreatedDate(new Date());
             item.setUpdatedDate(new Date());
@@ -99,6 +99,6 @@ public class FindItem {
             itemRepository.save;
         }
     }
-}
+}*/
 
 //Will get the solution tomorrow
