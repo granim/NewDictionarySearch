@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -17,7 +18,6 @@ public class readCSVFIle {
     private List<String> headers = new ArrayList<>();
 
     //read the file and place all contents into list
-    //TODO Separate into meaningful data sets
     public List<String> parseFIle(String file) throws IOException {
         try (BufferedReader br = Files.newBufferedReader(Paths.get(file))) {
        list = br.lines().collect(Collectors.toList());
@@ -90,10 +90,13 @@ public class readCSVFIle {
             }
 
         }
+        System.out.println(Arrays.toString(allDataLines[15]));
         System.out.println(newList.get(0).size());
         return newList;
     }
-
+    //So now we have 2 workable data structures and the list of headers
+    //One contains all lines of data in an Array Of Arrays
+    //One contains 18 columns of each data row example a list of all policy ID's or point_latitude
 
 
 
@@ -105,6 +108,8 @@ public class readCSVFIle {
         read.combineList(headers, theData);
     }
 
+
+    //So now we create methods that searches for certain data in each column
 
 
 }
