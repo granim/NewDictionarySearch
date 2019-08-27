@@ -6,7 +6,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -18,6 +17,7 @@ public class readCSVFIle {
     private List<String> headers = new ArrayList<>();
     //list that hold all the data
     private List<List<String>> mainList = new ArrayList<>();
+
 
     //read the file and place all contents into list
     public List<String> parseFIle(String file) throws IOException {
@@ -57,9 +57,7 @@ public class readCSVFIle {
         return list;
     }
 
-
-
-
+    //combines the data array and header list into one main list with the header being index[0]
     public List<List<String>> combineList(List<String> headers, List<String> data){
          mainList = new ArrayList<>();
         String headerArray[] = headers.toString().split(",");
@@ -136,14 +134,29 @@ public class readCSVFIle {
                return count;
             }
 
-            
-    public static void main(String[] args) {
-        String fileName = "Fl_In_Samp.csv";
-        readCSVFIle read = new readCSVFIle();
-        List<String> headers = read.getTheHeaders(fileName);
-        List<String> theData = read.getTheData(fileName);
-        read.combineList(headers, theData);
-    }
+
+            //find a certain policy number
+            public String[] findPolicyById(String[][] allDataLines, String policyId){
+                String[] arrayToReturn = new String[0];
+                for(String[] search : allDataLines){
+                    if(search[0].contains(policyId)){
+                      arrayToReturn = search.clone();
+                    }  else {
+                        System.out.println("Sorry no policy exist with that number");
+                    }
+                }
+                return arrayToReturn;
+            }
+
+
+            public static void main(String[] args) {
+                String fileName = "Fl_In_Samp.csv";
+                readCSVFIle read = new readCSVFIle();
+                List<String> headers = read.getTheHeaders(fileName);
+                List<String> theData = read.getTheData(fileName);
+                read.combineList(headers, theData);
+
+            }
 
 
 }
