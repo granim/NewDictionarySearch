@@ -1,12 +1,12 @@
 package com.insuranceInfo;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -16,6 +16,8 @@ public class readCSVFIle {
     String fileName = "Fl_In_Samp.csv";
     private List<String> list = new ArrayList<>();
     private List<String> headers = new ArrayList<>();
+    //list that hold all the data
+    private List<List<String>> mainList = new ArrayList<>();
 
     //read the file and place all contents into list
     public List<String> parseFIle(String file) throws IOException {
@@ -56,16 +58,18 @@ public class readCSVFIle {
     }
 
 
+
+
     public List<List<String>> combineList(List<String> headers, List<String> data){
-        List<List<String>> newList = new ArrayList<>();
+         mainList = new ArrayList<>();
         String headerArray[] = headers.toString().split(",");
         String[][] allDataLines = new String[data.size()][];
         //use to increase the index and add each header
         int index= 0;
         //puts the headers into newList
         for(String heads : headerArray){
-            newList.add(new ArrayList<>());
-            newList.get(index).add(heads);
+            mainList.add(new ArrayList<>());
+            mainList.get(index).add(heads);
             index++;
         }
         index = 0;
@@ -78,11 +82,11 @@ public class readCSVFIle {
 
         //loop through array of array break down and put each into proper place in newList
         //places each column of information inside the newList list as 18 separate columns
-        for(List<String> strings : newList) {
+        for(List<String> strings : mainList) {
             int newIndex = 0;
             for(String[] s : allDataLines){
                 String hold = s[newIndex];
-                newList.get(newIndex).add(hold);
+                mainList.get(newIndex).add(hold);
                 newIndex++;
                 if(newIndex == 18){
                     newIndex = 0;
@@ -91,8 +95,8 @@ public class readCSVFIle {
 
         }
         System.out.println(Arrays.toString(allDataLines[15]));
-        System.out.println(newList.get(0).size());
-        return newList;
+        System.out.println(mainList.get(0).size());
+        return mainList;
     }
     //So now we have 2 workable data structures and the list of headers
     //One contains all lines of data in an Array Of Arrays
@@ -111,5 +115,27 @@ public class readCSVFIle {
 
     //So now we create methods that searches for certain data in each column
 
+
+            //Searches the mainlist and populate the number of commercial and res occurrences.
+            public int  countLineTypes(ArrayList<List<String>> list1, String lineType){
+                List<String> propType = list1.get(15);
+                int resCount = 0;
+                int comCount = 0;
+                    for (String s : propType){
+                        if(s.equalsIgnoreCase("residential")) {
+                            resCount++;
+                        } if(s.equalsIgnoreCase("commercial")) {
+                            comCount++;
+                        }
+                    }
+                    if(lineType.equalsIgnoreCase("Residential")) {
+                        return resCount;
+                    } else {
+                        return comCount;
+                    }
+            }
+
+
+            
 
 }
