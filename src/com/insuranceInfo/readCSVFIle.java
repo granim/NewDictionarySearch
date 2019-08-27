@@ -39,7 +39,7 @@ public class readCSVFIle {
         } catch (IOException e){
             e.printStackTrace();
         }
-        headers.forEach(System.out::println);
+       // headers.forEach(System.out::println);
         return headers;
     }
 
@@ -76,13 +76,22 @@ public class readCSVFIle {
             index++;
         }
 
-        //loop through array of array break down and put each into proper place in newLis
+        //loop through array of array break down and put each into proper place in newList
+        //places each column of information inside the newList list as 18 separate columns
         for(List<String> strings : newList) {
-            
+            int newIndex = 0;
+            for(String[] s : allDataLines){
+                String hold = s[newIndex];
+                newList.get(newIndex).add(hold);
+                newIndex++;
+                if(newIndex == 18){
+                    newIndex = 0;
+                }
+            }
+
         }
-
+        System.out.println(newList.get(0).size());
         return newList;
-
     }
 
 
