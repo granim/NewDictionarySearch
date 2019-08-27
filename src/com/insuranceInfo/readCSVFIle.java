@@ -103,16 +103,6 @@ public class readCSVFIle {
     //One contains 18 columns of each data row example a list of all policy ID's or point_latitude
 
 
-
-    public static void main(String[] args) {
-        String fileName = "Fl_In_Samp.csv";
-        readCSVFIle read = new readCSVFIle();
-       List<String> headers = read.getTheHeaders(fileName);
-       List<String> theData = read.getTheData(fileName);
-        read.combineList(headers, theData);
-    }
-
-
     //So now we create methods that searches for certain data in each column
 
 
@@ -135,7 +125,25 @@ public class readCSVFIle {
                     }
             }
 
+            //create a method that searches for all occurrences of a certain given county
+            public int allCounties(String[][] allDataLines, String input){
+                int count = 0;
+                for(String[] search : allDataLines) {
+                 if(search.toString().contains(input)) {
+                     count++;
+                 }
+                }
+               return count;
+            }
 
             
+    public static void main(String[] args) {
+        String fileName = "Fl_In_Samp.csv";
+        readCSVFIle read = new readCSVFIle();
+        List<String> headers = read.getTheHeaders(fileName);
+        List<String> theData = read.getTheData(fileName);
+        read.combineList(headers, theData);
+    }
+
 
 }
