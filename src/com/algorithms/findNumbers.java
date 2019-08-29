@@ -7,7 +7,7 @@ import java.util.List;
 public class findNumbers {
 
 
-
+//algorithmic thinking
     public static void main(String[] args) {
         //simple algorithm to check for a single peak
         int[] numbers = {1,2,3,4,5,6,7,8,7,6,5,4,3,2,1};
@@ -57,19 +57,23 @@ public class findNumbers {
         }
         System.out.println(smallArray.size());
 
-        //this should not be printing the 6
+
         for(int p : smallArray) {
-            if(smallArray.get(p) < smallArray.get(p + 1) ) {
+            if(smallArray.get(p) <= smallArray.get(p + 1)) {
                continue;
             }
             System.out.println(p + " p");
         }
 
+        int[][] ints = {{1,2,3,4,},{5,6,7,8,9},{10,11,10,8}};
+
+        for(int[] i : ints) {
+
+        }
+
 
 
     }
-
-
 
 
 
